@@ -28,6 +28,9 @@ def balance(request, pk):
         if t.type == 'Deposit':
             current_total += t.amount
             table_contents.update({t : current_total})
+        else:
+            current_total -= t.amount
+            table_contents.update({t: current_total})
     content = {'account': account, 'table_contents': table_contents, 'balance': current_total}
     return render(request, 'checkbook/BalanceSheet.html', content)
 
